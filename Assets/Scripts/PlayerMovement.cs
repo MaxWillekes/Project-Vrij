@@ -64,4 +64,12 @@ public class PlayerMovement : MonoBehaviour
             spray.SetActive(false);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Guard")
+        {
+            Debug.LogWarning("Caught");
+        }
+    }
 }
