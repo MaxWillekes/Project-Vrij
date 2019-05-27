@@ -16,10 +16,11 @@ public class SprayInteract : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "TagAbleHuman")
+        if (other.tag == "TagAbleHuman" && other.GetComponent<Renderer>().material.color != Color.red)
         {
             Debug.Log(other.name);
             other.GetComponent<Renderer>().material.color = Color.red;
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>().numberCorporateRemaining--;
         }
     }
 }
