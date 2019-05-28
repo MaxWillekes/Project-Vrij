@@ -7,9 +7,11 @@ using UnityEngine.SceneManagement;
 public class GameManagerScript : MonoBehaviour
 {
     public Text corporateRemaining;
-    public int numberCorporateRemaining;
+    public Text sprayRemaining;
 
-    // Update is called once per frame
+    public int numberCorporateRemaining;
+    public float numberSprayRemaining;
+
     void Update()
     {
         corporateRemaining.text = "Number of corporate remaining: " + numberCorporateRemaining;
@@ -18,5 +20,7 @@ public class GameManagerScript : MonoBehaviour
         {
             Debug.Log("Win");
         }
+
+        sprayRemaining.text = "Spray remaining: %" + Mathf.Round(numberSprayRemaining);
     }
 }

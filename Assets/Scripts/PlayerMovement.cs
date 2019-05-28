@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = 20.0f;
     public float sensitivity = 1f;
 
+    public float sprayRemaining = 100f;
+
     public GameObject spray;
 
     private Vector3 moveDirection = Vector3.zero;
@@ -17,6 +19,11 @@ public class PlayerMovement : MonoBehaviour
     private float looker;
 
     CharacterController characterController;
+
+    private void Start()
+    {
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>().numberSprayRemaining = 100f;
+    }
 
     private void Update()
     {
@@ -58,12 +65,17 @@ public class PlayerMovement : MonoBehaviour
         //Making the character move
         controller.Move(moveDirection * Time.deltaTime);
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0) && sprayRemaining >= 0.1f)
         {
+            sprayRemaining -= 10 * Time.deltaTime;
             spray.SetActive(true);
-        }else if(Input.GetMouseButtonUp(0)){
+        }
+        else if(!Input.GetMouseButton(0) || sprayRemaining <= 0.5f )
+        {
             spray.SetActive(false);
         }
+
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>().numberSprayRemaining = sprayRemaining;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -72,6 +84,13 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.LogWarning("Caught");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (other.tag == "Refil")
+        {
+            Debug.LogWarning("Refil");
+            sprayRemaining = 100;
+            other.gameObject.SetActive(false);
         }
     }
 }
