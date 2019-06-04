@@ -8,9 +8,11 @@ public class GameManagerScript : MonoBehaviour
 {
     public Text corporateRemaining;
     public Text sprayRemaining;
+    public Text score;
 
     public int numberCorporateRemaining;
     public float numberSprayRemaining;
+    public int scoreNumber;
 
     void Update()
     {
@@ -18,9 +20,11 @@ public class GameManagerScript : MonoBehaviour
 
         if (numberCorporateRemaining <= 0)
         {
-            Debug.Log("Win");
+            SceneManager.LoadScene("level1");
         }
 
         sprayRemaining.text = "Spray remaining: %" + Mathf.Round(numberSprayRemaining);
+
+        score.text = "Score: " + scoreNumber;
     }
 }

@@ -9,6 +9,8 @@ TagManager:
   - Guard
   - GameManager
   - Refil
+  - TagAbleWall
+  - PlayerTagHolder
   layers:
   - Default
   - TransparentFX

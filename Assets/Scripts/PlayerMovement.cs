@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float sprayRemaining = 100f;
 
     public GameObject spray;
+    public GameObject playerTagHolder;
 
     private Vector3 moveDirection = Vector3.zero;
     private float turner;
@@ -20,8 +21,9 @@ public class PlayerMovement : MonoBehaviour
 
     CharacterController characterController;
 
-    private void Start()
+    void Start()
     {
+        playerTagHolder = GameObject.FindGameObjectWithTag("PlayerTagHolder");
         GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>().numberSprayRemaining = 100f;
     }
 
@@ -75,22 +77,38 @@ public class PlayerMovement : MonoBehaviour
             spray.SetActive(false);
         }
 
+        if (Input.GetKeyDown("left shift"))
+        {
+            speed += 6f;
+        } else if (Input.GetKeyUp("left shift"))
+        {
+            speed -= 6f;
+        }
+
         GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>().numberSprayRemaining = sprayRemaining;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Guard")
-        {
-            Debug.LogWarning("Caught");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-
         if (other.tag == "Refil")
         {
             Debug.LogWarning("Refil");
             sprayRemaining = 100;
             other.gameObject.SetActive(false);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "TagAbleWall" && other.GetComponent<SpriteRenderer>().color.a > 1)
+        {
+            if (Input.GetKeyDown("e"))
+            {
+                other.transform.GetChild(0).gameObject.SetActive(true);
+                gameObject.tag = "Untagged";
+                playerTagHolder.tag = "Player";
+                gameObject.SetActive(false);
+            }
         }
     }
 }

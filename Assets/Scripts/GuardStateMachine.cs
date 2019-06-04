@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class GuardStateMachine : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class GuardStateMachine : MonoBehaviour
     private GameObject[] coverObjects;
     private Transform currentPatrolTarget;
     private float waitTimer;
-    private GameObject player;
     private NavMeshAgent agent;
 
     // Start is called before the first frame update
@@ -23,7 +23,6 @@ public class GuardStateMachine : MonoBehaviour
         coverObjects = GameObject.FindGameObjectsWithTag("Cover");
         agent = GetComponent<NavMeshAgent>();
         currentPatrolTarget = patrolPositions[Random.Range(0, patrolPositions.Length)];
-        player = GameObject.FindGameObjectWithTag("Player");
         waitTimer = Random.Range(3, 5);
         state = EnemyStates.Patrol;
     }
@@ -34,13 +33,16 @@ public class GuardStateMachine : MonoBehaviour
         ExecuteState();
     }
 
-    private void ExecuteState() {
+    private void ExecuteState()
+    {
 
-        if (CheckPlayerInRange(alertRange)) {
+        if (CheckPlayerInRange(alertRange))
+        {
             state = EnemyStates.Alert;
         }
 
-        switch (state) {
+        switch (state)
+        {
             case EnemyStates.Alert:
                 AlertState();
                 break;
@@ -53,41 +55,49 @@ public class GuardStateMachine : MonoBehaviour
         }
     }
 
-    private bool CheckPlayerInRange(float range) {
-        return Vector3.Distance(player.transform.position, transform.position) < range;
+    private bool CheckPlayerInRange(float range)
+    {
+        return Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < range;
     }
 
-    private void IdleState() {
+    private void IdleState()
+    {
         waitTimer -= Time.deltaTime;
-        if(waitTimer <= 0) {
+        if (waitTimer <= 0)
+        {
             waitTimer = Random.Range(3, 5);
             currentPatrolTarget = patrolPositions[Random.Range(0, patrolPositions.Length)];
             SwitchState(EnemyStates.Patrol);
         }
     }
-    private void AlertState() {
-        Vector3 toPlayerDirection = transform.position + player.transform.position;
+    private void AlertState()
+    {
+        Vector3 toPlayerDirection = transform.position + GameObject.FindGameObjectWithTag("Player").transform.position;
         //transform.rotation = Quaternion.LookRotation(awayFromPlayerDirection);
         //Vector3 AlertDestination = transform.position + awayFromPlayerDirection * 10;
 
         GameObject closestCoverObject = GetClosestCoverObject();
 
-        MoveToTarget(player.transform.position);
+        MoveToTarget(GameObject.FindGameObjectWithTag("Player").transform.position);
 
 
-        if (!CheckPlayerInRange(alertRange * 1.5f)) {
+        if (!CheckPlayerInRange(alertRange * 1.5f))
+        {
             SwitchState(EnemyStates.Idle);
         }
     }
 
-    private GameObject GetClosestCoverObject() {
+    private GameObject GetClosestCoverObject()
+    {
 
         GameObject closestObject = null;
         float dist = Mathf.Infinity;
-        foreach(GameObject obj in coverObjects) {
+        foreach (GameObject obj in coverObjects)
+        {
 
             float distanceToCoverObject = Vector3.Distance(transform.position, obj.transform.position);
-            if(distanceToCoverObject < dist) {
+            if (distanceToCoverObject < dist)
+            {
                 dist = distanceToCoverObject;
                 closestObject = obj;
             }
@@ -96,27 +106,42 @@ public class GuardStateMachine : MonoBehaviour
 
     }
 
-    private void PatrolState() {
+    private void PatrolState()
+    {
 
-        if(Vector3.Distance(currentPatrolTarget.position, transform.position) < 1f) {
+        if (Vector3.Distance(currentPatrolTarget.position, transform.position) < 1f)
+        {
             SwitchState(EnemyStates.Idle);
         }
         MoveToTarget(currentPatrolTarget);
 
     }
 
-    public void MoveToTarget(Transform target) {
+    public void MoveToTarget(Transform target)
+    {
         //Vector3 targetDirection = target.transform.position - transform.position;
         //transform.rotation = Quaternion.LookRotation(targetDirection);
         //transform.position += transform.forward * speed * Time.deltaTime;
         agent.SetDestination(target.transform.position);
     }
-    public void MoveToTarget(Vector3 position) {
+    public void MoveToTarget(Vector3 position)
+    {
         agent.SetDestination(position);
     }
 
-    public void SwitchState(EnemyStates newState) {
+    public void SwitchState(EnemyStates newState)
+    {
 
         state = newState;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.LogWarning("Caught");
+            other.GetComponent<PlayerMovement>().sprayRemaining = 0;
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }
