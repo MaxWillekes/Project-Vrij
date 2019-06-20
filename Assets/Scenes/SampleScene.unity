@@ -3506,11 +3506,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5510993035199180394, guid: e54764b69f7d8e7418f08cb6c9c80376,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Retry
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e54764b69f7d8e7418f08cb6c9c80376, type: 3}
 --- !u!1001 &4639858738058190838

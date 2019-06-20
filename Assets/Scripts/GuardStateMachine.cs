@@ -17,6 +17,7 @@ public class GuardStateMachine : MonoBehaviour
     private float waitTimer;
     private NavMeshAgent agent;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -119,9 +120,6 @@ public class GuardStateMachine : MonoBehaviour
 
     public void MoveToTarget(Transform target)
     {
-        //Vector3 targetDirection = target.transform.position - transform.position;
-        //transform.rotation = Quaternion.LookRotation(targetDirection);
-        //transform.position += transform.forward * speed * Time.deltaTime;
         agent.SetDestination(target.transform.position);
     }
     public void MoveToTarget(Vector3 position)
@@ -135,13 +133,15 @@ public class GuardStateMachine : MonoBehaviour
         state = newState;
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.LogWarning("Caught");
-            other.GetComponent<PlayerMovement>().sprayRemaining = 0;
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>().LoseScreen.SetActive(true);
+            Time.timeScale = 0;
+            other.GetComponent<PlayerMovement>().playerInputEnabled = false;
+            //other.GetComponent<PlayerMovement>().sprayRemaining = 0;
         }
     }
 }
