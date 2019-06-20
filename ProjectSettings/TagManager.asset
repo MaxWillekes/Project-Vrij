@@ -11,6 +11,7 @@ TagManager:
   - Refil
   - TagAbleWall
   - PlayerTagHolder
+  - PauseCanvas
   layers:
   - Default
   - TransparentFX
