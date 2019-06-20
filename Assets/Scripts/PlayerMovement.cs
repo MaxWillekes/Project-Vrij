@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
 
     CharacterController characterController;
 
+    public bool playerInputEnabled = true;
+
     void Start()
     {
         playerTagHolder = GameObject.FindGameObjectWithTag("PlayerTagHolder");
@@ -29,63 +31,65 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        CharacterController controller = GetComponent<CharacterController>();
+        if (playerInputEnabled) {
+            CharacterController controller = GetComponent<CharacterController>();
 
-        // is the controller on the ground?
-        if (controller.isGrounded)
-        {
-            //Feed moveDirection with input.
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            moveDirection = transform.TransformDirection(moveDirection);
-
-            //Multiply it by speed.
-            moveDirection *= speed;
-
-            //Jumping
-            if (Input.GetButton("Jump"))
+            // is the controller on the ground?
+            if (controller.isGrounded)
             {
-                moveDirection.y = jumpSpeed;
+                //Feed moveDirection with input.
+                moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                moveDirection = transform.TransformDirection(moveDirection);
+
+                //Multiply it by speed.
+                moveDirection *= speed;
+
+                //Jumping
+                if (Input.GetButton("Jump"))
+                {
+                    moveDirection.y = jumpSpeed;
+                }
             }
-        }
 
-        turner = Input.GetAxis("Mouse X") * sensitivity;
-        looker = -Input.GetAxis("Mouse Y") * sensitivity;
+            turner = Input.GetAxis("Mouse X") * sensitivity;
+            looker = -Input.GetAxis("Mouse Y") * sensitivity;
 
-        if (turner != 0)
-        {
-            //Code for action on mouse moving right
-            transform.eulerAngles += new Vector3(0, turner, 0);
-        }
-        if (looker != 0)
-        {
-            //Code for action on mouse moving right
-            transform.eulerAngles += new Vector3(looker, 0, 0);
-        }
+            if (turner != 0)
+            {
+                //Code for action on mouse moving right
+                transform.eulerAngles += new Vector3(0, turner, 0);
+            }
+            if (looker != 0)
+            {
+                //Code for action on mouse moving right
+                transform.eulerAngles += new Vector3(looker, 0, 0);
+            }
 
-        //Applying gravity to the controller
-        moveDirection.y -= gravity * Time.deltaTime;
-        //Making the character move
-        controller.Move(moveDirection * Time.deltaTime);
+            //Applying gravity to the controller
+            moveDirection.y -= gravity * Time.deltaTime;
+            //Making the character move
+            controller.Move(moveDirection * Time.deltaTime);
 
-        if (Input.GetMouseButton(0) && sprayRemaining >= 0.1f)
-        {
-            sprayRemaining -= 10 * Time.deltaTime;
-            spray.SetActive(true);
-        }
-        else if(!Input.GetMouseButton(0) || sprayRemaining <= 0.5f )
-        {
-            spray.SetActive(false);
-        }
+            if (Input.GetMouseButton(0) && sprayRemaining >= 0.1f)
+            {
+                sprayRemaining -= 10 * Time.deltaTime;
+                spray.SetActive(true);
+            }
+            else if (!Input.GetMouseButton(0) || sprayRemaining <= 0.5f)
+            {
+                spray.SetActive(false);
+            }
 
-        if (Input.GetKeyDown("left shift"))
-        {
-            speed += 6f;
-        } else if (Input.GetKeyUp("left shift"))
-        {
-            speed -= 6f;
-        }
+            if (Input.GetKeyDown("left shift"))
+            {
+                speed += 6f;
+            } else if (Input.GetKeyUp("left shift"))
+            {
+                speed -= 6f;
+            }
 
-        GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>().numberSprayRemaining = sprayRemaining;
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>().numberSprayRemaining = sprayRemaining;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
