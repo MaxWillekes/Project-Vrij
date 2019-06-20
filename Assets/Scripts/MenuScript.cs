@@ -16,11 +16,6 @@ public class MenuScript : MonoBehaviour
         SceneManager.LoadScene("Level1");
     }
 
-    public void Retry()
-    {
-        SceneManager.LoadScene(Application.loadedLevel);
-    }
-
     public void Credits()
     {
         SceneManager.LoadScene("Credits");
