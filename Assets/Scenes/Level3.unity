@@ -111,7 +111,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: d366811ba3f5d7d4ca65c840ca89722c, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 034fa8365813eeb43afb5376f7afc6bb, type: 2}
 --- !u!1001 &35130548
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -126,6 +126,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: f2be4e13691522b4d8ce5dafdfa5a6d9, type: 3}
       propertyPath: m_TagString
       value: Cover
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f2be4e13691522b4d8ce5dafdfa5a6d9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f2be4e13691522b4d8ce5dafdfa5a6d9, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f2be4e13691522b4d8ce5dafdfa5a6d9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -296,7 +304,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149704207}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35.3, y: 0, z: -21.7}
+  m_LocalPosition: {x: 39.2, y: 0, z: -47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 822214680}
@@ -1036,6 +1044,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Cover
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 172878fb3e2a1c34780abd16293a12f2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 172878fb3e2a1c34780abd16293a12f2, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 172878fb3e2a1c34780abd16293a12f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -22.62875
@@ -1100,6 +1116,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 2d0787890090da24ab885f6199c60829, type: 3}
       propertyPath: m_TagString
       value: Cover
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2d0787890090da24ab885f6199c60829, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2d0787890090da24ab885f6199c60829, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2d0787890090da24ab885f6199c60829, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1168,8 +1192,8 @@ GameObject:
   m_Name: Cube (7)
   m_TagString: Cover
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &654014972
 BoxCollider:
@@ -1445,7 +1469,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 750402495}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.3, y: 0, z: -23.6}
+  m_LocalPosition: {x: 1.1, y: 0, z: -37.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 822214680}
@@ -1502,6 +1526,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: f2be4e13691522b4d8ce5dafdfa5a6d9, type: 3}
       propertyPath: m_TagString
       value: Cover
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f2be4e13691522b4d8ce5dafdfa5a6d9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f2be4e13691522b4d8ce5dafdfa5a6d9, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f2be4e13691522b4d8ce5dafdfa5a6d9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1583,7 +1615,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 876003527}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 40.8, y: 0, z: 39.3}
+  m_LocalPosition: {x: 46.3, y: 0, z: 42.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 822214680}
@@ -1618,8 +1650,8 @@ GameObject:
   m_Name: Cube (5)
   m_TagString: Cover
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &944899548
 BoxCollider:
@@ -1733,7 +1765,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 945271921}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -39.4, y: 0, z: 25.8}
+  m_LocalPosition: {x: 7.5, y: 0, z: 29.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 822214680}
@@ -1813,8 +1845,8 @@ GameObject:
   m_Name: Cube (6)
   m_TagString: Cover
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1003391437
 BoxCollider:
@@ -1964,7 +1996,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069463804}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.3, y: 0, z: 25.8}
+  m_LocalPosition: {x: -19.8, y: 0, z: 27.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 822214680}
@@ -2020,6 +2052,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 2d0787890090da24ab885f6199c60829, type: 3}
       propertyPath: m_TagString
       value: Cover
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2d0787890090da24ab885f6199c60829, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2d0787890090da24ab885f6199c60829, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2d0787890090da24ab885f6199c60829, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2536,8 +2576,8 @@ GameObject:
   m_Name: Cube
   m_TagString: Cover
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1432103680
 BoxCollider:
@@ -2834,8 +2874,8 @@ GameObject:
   m_Name: Cube (4)
   m_TagString: Cover
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1583660952
 BoxCollider:
@@ -2949,7 +2989,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1587577165}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -44.2, y: 0, z: -46.9}
+  m_LocalPosition: {x: -31.9, y: 0, z: -45.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 822214680}
@@ -2979,7 +3019,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1611927170}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -30.5, y: 0, z: 5.8}
+  m_LocalPosition: {x: -31.5, y: 0, z: 3.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 822214680}
@@ -3002,8 +3042,8 @@ GameObject:
   m_Name: Cube (2)
   m_TagString: Cover
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1663486770
 BoxCollider:
@@ -3365,8 +3405,8 @@ GameObject:
   m_Name: Cube (1)
   m_TagString: Cover
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1856862383
 BoxCollider:
@@ -3473,8 +3513,8 @@ GameObject:
   m_Name: Cube (3)
   m_TagString: Cover
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1919944270
 BoxCollider:
@@ -3842,6 +3882,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1847991908, guid: e54764b69f7d8e7418f08cb6c9c80376, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackToMenu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e54764b69f7d8e7418f08cb6c9c80376, type: 3}
