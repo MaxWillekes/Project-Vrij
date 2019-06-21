@@ -16,6 +16,11 @@ public class MenuScript : MonoBehaviour
         SceneManager.LoadScene("Level1");
     }
 
+    public void LoadLevel2()
+    {
+        SceneManager.LoadScene("Level2");
+    }
+
     public void Credits()
     {
         SceneManager.LoadScene("Credits");

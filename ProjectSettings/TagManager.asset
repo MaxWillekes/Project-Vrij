@@ -12,6 +12,8 @@ TagManager:
   - TagAbleWall
   - PlayerTagHolder
   - PauseCanvas
+  - WinScreen
+  - LoseScreen
   layers:
   - Default
   - TransparentFX
