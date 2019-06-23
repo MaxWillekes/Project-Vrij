@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GuardStateMachine : MonoBehaviour
@@ -137,11 +140,8 @@ public class GuardStateMachine : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            
-            GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>().LoseScreen.SetActive(true);
-            Time.timeScale = 0;
-            other.GetComponent<PlayerMovement>().playerInputEnabled = false;
-            //other.GetComponent<PlayerMovement>().sprayRemaining = 0;
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>().Caught();
+            other.GetComponent<PlayerMovement>().sprayRemaining = 0;
         }
     }
 }

@@ -23,7 +23,7 @@ public class SprayInteract : MonoBehaviour
         {
             Debug.Log(other.name);
             other.GetComponent<Renderer>().material.color = Color.red;
-            GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>().numberCorporateRemaining--;
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>().numberCorporateSprayed++;
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>().scoreNumber += Random.Range(15, 30);
         }
         /*
