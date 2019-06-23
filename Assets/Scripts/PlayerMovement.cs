@@ -19,7 +19,9 @@ public class PlayerMovement : MonoBehaviour
     private float turner;
     private float looker;
 
-    CharacterController characterController;
+    public CharacterController characterController;
+
+    public Animator animatorChar;
 
     public bool playerInputEnabled = true;
 
@@ -38,16 +40,33 @@ public class PlayerMovement : MonoBehaviour
             if (controller.isGrounded)
             {
                 //Feed moveDirection with input.
+                animatorChar.SetBool("IsJumping", false);
                 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
                 moveDirection = transform.TransformDirection(moveDirection);
+
 
                 //Multiply it by speed.
                 moveDirection *= speed;
 
+                if (Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("d") ||Input.GetKey("s") )
+                {
+                    animatorChar.SetBool("IsRunning", true);
+
+                }
+                else
+                {
+                    animatorChar.SetBool("IsRunning", false);
+
+                }
+
+
+
                 //Jumping
                 if (Input.GetButton("Jump"))
                 {
+                    
                     moveDirection.y = jumpSpeed;
+                    animatorChar.SetBool("IsJumping", true);
                 }
             }
 
@@ -72,20 +91,24 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetMouseButton(0) && sprayRemaining >= 0.1f)
             {
+
                 sprayRemaining -= 10 * Time.deltaTime;
                 spray.SetActive(true);
+                animatorChar.SetBool("IsSpraying", true);
+
             }
             else if (!Input.GetMouseButton(0) || sprayRemaining <= 0.5f)
             {
                 spray.SetActive(false);
+                animatorChar.SetBool("IsSpraying", false);
             }
 
             if (Input.GetKeyDown("left shift"))
             {
-                speed += 6f;
+                speed += 3f;
             } else if (Input.GetKeyUp("left shift"))
             {
-                speed -= 6f;
+                speed -= 3f;
             }
 
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManagerScript>().numberSprayRemaining = sprayRemaining;

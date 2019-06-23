@@ -160,8 +160,8 @@ ModelImporter:
     - serializedVersion: 16
       name: IdleAnimation
       takeName: Take 001
-      firstFrame: 109
-      lastFrame: 174
+      firstFrame: 70
+      lastFrame: 100
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -188,8 +188,8 @@ ModelImporter:
     - serializedVersion: 16
       name: JumpAnimation
       takeName: Take 001
-      firstFrame: 175
-      lastFrame: 221
+      firstFrame: 110
+      lastFrame: 150
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
