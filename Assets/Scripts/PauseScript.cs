@@ -6,6 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class PauseScript : MonoBehaviour {
 
+    //button sprite switches//
+    public Sprite OffSpriteRetry;
+    public Sprite OnSpriteRetry;
+    public Button retrybut;
+
+    public Sprite offSpriteHome;
+    public Sprite onSpriteHome;
+    public Button homebut;
+
+    public Sprite offSpriteResume;
+    public Sprite onSpriteResume;
+    public Button resumeButton;
+
+
     public GameObject Menu;
     GameObject player;
 
@@ -27,6 +41,17 @@ public class PauseScript : MonoBehaviour {
 
     public void Resume()
     {
+        if (resumeButton.image.sprite == onSpriteResume)
+        {
+            resumeButton.image.sprite = offSpriteResume;
+        }
+        else
+        {
+            resumeButton.image.sprite = onSpriteResume;
+        }
+
+        //SceneManager.LoadScene("Menu");//
+        Time.timeScale = 1;
         Menu.SetActive(false);
         player.GetComponent<PlayerMovement>().playerInputEnabled = true;
         Time.timeScale = 1;
@@ -34,11 +59,28 @@ public class PauseScript : MonoBehaviour {
 
     public void Retry()
     {
+        if (retrybut.image.sprite == OnSpriteRetry)
+        {
+            retrybut.image.sprite = OffSpriteRetry;
+        }
+        else
+        {
+            retrybut.image.sprite = OnSpriteRetry;
+        }
+
         SceneManager.LoadScene(Application.loadedLevel);
     }
 
     public void mainMenu()
     {
+        if (homebut.image.sprite == onSpriteHome)
+        {
+            homebut.image.sprite = offSpriteHome;
+        }
+        else
+        {
+            homebut.image.sprite = onSpriteHome;
+        }
         SceneManager.LoadScene("Menu");
         Time.timeScale = 1;
     }

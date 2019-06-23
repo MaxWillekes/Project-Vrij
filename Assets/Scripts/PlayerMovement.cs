@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
@@ -24,6 +25,10 @@ public class PlayerMovement : MonoBehaviour
     public Animator animatorChar;
 
     public bool playerInputEnabled = true;
+
+    public Image grafFill;
+
+    public Image emptyCan;
 
     void Start()
     {
@@ -93,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
             {
 
                 sprayRemaining -= 10 * Time.deltaTime;
+                grafFill.fillAmount -= 0.1f *Time.deltaTime;
                 spray.SetActive(true);
                 animatorChar.SetBool("IsSpraying", true);
 
@@ -101,6 +107,24 @@ public class PlayerMovement : MonoBehaviour
             {
                 spray.SetActive(false);
                 animatorChar.SetBool("IsSpraying", false);
+                
+            }
+
+            if( sprayRemaining == 100)
+            {
+                grafFill.fillAmount = 1;
+            }
+            else if (sprayRemaining == 0)
+            {
+                grafFill.fillAmount = 0;
+            }
+
+            if ( sprayRemaining <= 0.5f){
+                emptyCan.enabled = true;
+            }
+            else if (sprayRemaining >= 0.1f)
+            {
+                emptyCan.enabled = false;
             }
 
             if (Input.GetKeyDown("left shift"))
