@@ -17,6 +17,10 @@ public class StateMachine : MonoBehaviour
     private GameObject player;
     private NavMeshAgent agent;
 
+
+    public GameObject businessman;
+    public Animator businessAnim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +30,8 @@ public class StateMachine : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         waitTimer = Random.Range(3, 5);
         state = EnemyStates.Patrol;
+
+        businessAnim = businessman.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -58,6 +64,9 @@ public class StateMachine : MonoBehaviour
     }
 
     private void IdleState() {
+        businessAnim.SetBool("inPanic", false);
+        businessAnim.SetBool("isWalking", false);
+
         waitTimer -= Time.deltaTime;
         if(waitTimer <= 0) {
             waitTimer = Random.Range(3, 5);
@@ -66,6 +75,9 @@ public class StateMachine : MonoBehaviour
         }
     }
     private void PanicState() {
+
+        businessAnim.SetBool("inPanic", true);
+        businessAnim.SetBool("isWalking", false);
         Vector3 awayFromPlayerDirection = transform.position - player.transform.position;
         //transform.rotation = Quaternion.LookRotation(awayFromPlayerDirection);
         //Vector3 panicDestination = transform.position + awayFromPlayerDirection * 10;
@@ -98,7 +110,11 @@ public class StateMachine : MonoBehaviour
 
     private void PatrolState() {
 
-        if(Vector3.Distance(currentPatrolTarget.position, transform.position) < 1f) {
+        businessAnim.SetBool("isWalking", true);
+        businessAnim.SetBool("inPanic", false);
+       
+
+        if (Vector3.Distance(currentPatrolTarget.position, transform.position) < 1f) {
             SwitchState(EnemyStates.Idle);
         }
         MoveToTarget(currentPatrolTarget);
