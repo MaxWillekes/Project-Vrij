@@ -84,10 +84,9 @@ public class StateMachine : MonoBehaviour
 
         GameObject closestCoverObject = GetClosestCoverObject();
 
-        MoveToTarget(closestCoverObject.transform.position + awayFromPlayerDirection.normalized * 3);
+        MoveToTarget(closestCoverObject.transform.position + awayFromPlayerDirection.normalized * 5);
 
-
-        if (!CheckPlayerInRange(panicRange * 1.5f)) {
+        if (Vector3.Distance(closestCoverObject.transform.position + awayFromPlayerDirection.normalized * 5, transform.position) < 4f && !CheckPlayerInRange(panicRange * 1.5f)) {
             SwitchState(EnemyStates.Idle);
         }
     }
