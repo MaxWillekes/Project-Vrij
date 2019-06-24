@@ -56,7 +56,10 @@ public class PlayerMovement : MonoBehaviour
                 if (Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("d") ||Input.GetKey("s") )
                 {
                     animatorChar.SetBool("IsRunning", true);
-                    GetComponent<AudioSource>().Play();
+                    if (!GetComponent<AudioSource>().isPlaying)
+                    {
+                        GetComponent<AudioSource>().Play();
+                    }
                 }
                 else
                 {
@@ -100,7 +103,10 @@ public class PlayerMovement : MonoBehaviour
                 sprayRemaining -= 10 * Time.deltaTime;
                 grafFill.fillAmount -= 0.1f *Time.deltaTime;
                 spray.SetActive(true);
-                spray.GetComponent<AudioSource>().Play();
+                if (!spray.GetComponent<AudioSource>().isPlaying)
+                {
+                    spray.GetComponent<AudioSource>().Play();
+                }
                 animatorChar.SetBool("IsSpraying", true);
 
             }

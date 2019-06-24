@@ -20,9 +20,17 @@ public class StateMachine : MonoBehaviour
     public GameObject bMan;
     public Animator myAnim;
 
+    public bool sprayed;
+
+    public Texture BumpMap;
+    public Texture MetallicGlossMap;
+    public Texture ParallaxMap;
+    public Texture RoughnessMap;
+
     // Start is called before the first frame update
     void Start()
     {
+        sprayed = false;
         coverObjects = GameObject.FindGameObjectsWithTag("Cover");
         agent = GetComponent<NavMeshAgent>();
         currentPatrolTarget = patrolPositions[Random.Range(0, patrolPositions.Length)];
@@ -36,6 +44,21 @@ public class StateMachine : MonoBehaviour
     void Update()
     {
         ExecuteState();
+
+        if (sprayed)
+        {
+            Transform otherMaterial = transform.GetChild(0).transform.GetChild(0);
+
+            otherMaterial.GetComponent<Renderer>().material.EnableKeyword("_NORMALMAP");
+            otherMaterial.GetComponent<Renderer>().material.EnableKeyword("_METALLICGLOSSMAP");
+            otherMaterial.GetComponent<Renderer>().material.EnableKeyword("_PARALLAXMAP");
+            otherMaterial.GetComponent<Renderer>().material.EnableKeyword("_DETAIL_MULX2");
+
+            otherMaterial.GetComponent<Renderer>().material.SetTexture("_BumpMap", BumpMap);
+            otherMaterial.GetComponent<Renderer>().material.SetTexture("_MetallicGlossMap", MetallicGlossMap);
+            otherMaterial.GetComponent<Renderer>().material.SetTexture("_ParallaxMap", ParallaxMap);
+            otherMaterial.GetComponent<Renderer>().material.SetTexture("_DETAIL_MULX2", RoughnessMap);
+        }
     }
 
     private void ExecuteState() {
