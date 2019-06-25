@@ -29,6 +29,7 @@ public class GameManagerScript : MonoBehaviour
 
     private void Awake()
     {
+        Cursor.visible = false;
         corporateRemainingObject.SetActive(false);
         corporateDone.SetActive(false);
 
@@ -51,6 +52,7 @@ public class GameManagerScript : MonoBehaviour
         if (numberCorporateSprayed == numberCorporate)
         {
             WinScreen.SetActive(true);
+            Cursor.visible = true;
             Time.timeScale = 0;
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().playerInputEnabled = false;
         }
@@ -64,7 +66,7 @@ public class GameManagerScript : MonoBehaviour
             corporateRemainingObject.SetActive(false);
             corporateDone.SetActive(true);
         }
-        else if(numberCorporateSprayed > 0)
+        else if (numberCorporateSprayed > 0)
         {
             corporate0.SetActive(false);
             corporateRemainingObject.SetActive(true);
@@ -76,7 +78,8 @@ public class GameManagerScript : MonoBehaviour
         if (!TweeLevens.activeSelf)
         {
             TweeLevens.SetActive(true);
-        }else if (!EenLeven.activeSelf)
+        }
+        else if (!EenLeven.activeSelf)
         {
             EenLeven.SetActive(true);
         }
@@ -85,6 +88,7 @@ public class GameManagerScript : MonoBehaviour
             Time.timeScale = 0;
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().playerInputEnabled = false;
             LoseScreen.SetActive(true);
+            Cursor.visible = true;
         }
     }
 
